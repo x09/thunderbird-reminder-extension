@@ -1,206 +1,163 @@
 # Email Reminders for Thunderbird
 
-A Thunderbird extension that adds Outlook-style email reminders. Set reminders on any email and receive notifications when they're due.
+**English** · [Русский](README.ru.md)
 
-![Thunderbird 106+](https://img.shields.io/badge/Thunderbird-106%2B-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
-![Version](https://img.shields.io/badge/version-0.3.1-orange)
+Set reminders on email messages and receive a desktop notification when they are due.
+This is the [x09 fork](https://github.com/x09/thunderbird-reminder-extension) of
+[Marek Hajduczenia's original project](https://github.com/gitzone83/thunderbird-reminder-extension),
+with Russian localization and an infrastructure for additional languages.
+
+## What this fork adds
+
+- Complete **English and Russian** catalogs: 98 messages per language, covering
+  all four pages, menu items, notifications, errors, confirmations and tag labels.
+- Automatic language selection from the Thunderbird UI, with English as the fallback.
+- Locale-aware dates and relative times, including Russian grammatical forms.
+- A shared localization helper, catalog validation and a [translator guide](LOCALIZATION.md).
+- Translation of the managed reminder tag when the UI language changes, while
+  preserving custom tag names, tag keys and colors.
+- Wrapping for longer controls and a snooze menu that stays inside the scrollable popup.
+- A reproducible XPI builder and automated checks, without third-party runtime dependencies.
+
+The implementation is in this fork's `master`. The localization contribution is
+also proposed upstream in [PR #6](https://github.com/gitzone83/thunderbird-reminder-extension/pull/6).
+That PR has its own status; this fork can be built and used independently.
+
+The source manifest version is **0.3.1**. The separately built localization XPI
+uses **0.3.1.1** via a build-time override; it is not an official upstream release.
 
 ## Features
 
-- **Set reminders** on any email via right-click context menu
-- **Quick options** - In 1 hour, 4 hours, Tomorrow, Next week
-- **Custom date/time** picker for precise scheduling
-- **Visual tags** - Emails with reminders show an orange "Has Reminder" tag in the message list
-- **System notifications** when reminders are due
-- **Snooze** reminders (5 min, 15 min, 1 hour, 4 hours, 1 day, 1 week)
-- **Mark complete** or **dismiss** reminders
-- **Add notes** to remind yourself why
-- **View all reminders** with filtering (Active, Completed, Dismissed)
-- **Export/Import** reminders as JSON backup
-- **100% local** - No data leaves your computer
+- Set a reminder from an email's right-click menu, with a date/time and optional notes.
+- Use quick choices for one hour, four hours, tomorrow at 09:00 or next week.
+- Identify emails with active reminders by the orange **Has Reminder** tag.
+- View active reminders from the toolbar, or open the full list and filter by status.
+- Snooze, complete, dismiss, delete or reactivate reminders.
+- Export/import reminders as JSON and optionally archive an email after setting a reminder.
+- Keep reminder data locally. See [PRIVACY.md](PRIVACY.md).
 
-## Screenshots
+## How notifications actually work
 
-### Setting a Reminder
+Thunderbird must be running. The extension checks for due reminders **once per
+minute**, so a notification may appear on the next check rather than at the exact
+scheduled second. It also checks overdue reminders on application startup.
 
-Right-click any email in your message list and select **"Set Reminder..."** to open the reminder dialog.
+A due pending/snoozed reminder produces a **system desktop notification** with a
+title, email subject and sender. Its location, appearance, duration and notification
+history depend on the operating system and desktop environment. Clicking it attempts
+to open the original email in Thunderbird.
 
-![Set Reminder Context Menu](screenshots/context-menu.png)
+After the notification API call succeeds, the reminder changes to `notified`
+(**Due** in English; **Срок наступил** in Russian). This records that the notification
+was requested; it does not prove that the user saw it. The same reminder is **not
+shown repeatedly**. Use **Snooze** to schedule another notification.
 
-Choose from quick options (1 hour, 4 hours, Tomorrow, Next Week) or set a custom date and time. Add optional notes to remind yourself why.
+There is no persistent reminder dialog or extension-defined sound. A system sound,
+if any, depends on desktop settings. If Thunderbird is closed at the due time,
+notification delivery waits until it runs again.
 
-![Reminder Dialog](screenshots/reminder-dialog.png)
+The toolbar badge displays `pending|due`: pending includes snoozed reminders;
+due counts reminders already marked `notified`. A red/overdue date is a time-based
+visual indicator, not proof that a notification was shown. Reopen the popup or
+list to refresh it when checking status.
 
-### Visual Tags on Emails
-
-Emails with active reminders automatically display an orange **"Has Reminder"** tag in the message list and message header. The tag is removed when you complete or dismiss the reminder.
-
-![Email with Reminder Tag](screenshots/email-with-tag.png)
-
-**Tip:** Enable the "Tags" column in your message list (right-click column headers) to see tags directly in the list view.
-
-### Toolbar Popup
-
-Click the **Email Reminders** toolbar button to see your active reminders at a glance. The badge shows two numbers: **pending|due** (blue for pending, orange when reminders are due).
-
-![Toolbar Badge](screenshots/toolbar-badge.png)
-
-Reminders are color-coded by urgency:
-- **Red** - Overdue reminders
-- **Yellow** - Due within the next hour
-- **White** - Future reminders
-
-![Toolbar Popup](screenshots/toolbar-popup.png)
-
-### Full Reminder List
-
-Click **"View All Reminders"** for the complete list with filtering options (Active, Completed, Dismissed).
-
-![Reminder List](screenshots/reminder-list.png)
-
-### Notifications
-
-When a reminder is due, you'll receive a system notification. Click the notification to open the email.
-
-![Desktop Notification](screenshots/notification.png)
-
-### Settings
-
-Access settings via **Tools > Add-ons and Themes > Email Reminders > Options** to export, import, or manage your reminder data.
-
-![Settings Page](screenshots/settings.png)
-
-## Installation
-
-### From Thunderbird Add-ons (Recommended)
-
-1. Open Thunderbird
-2. Go to **Tools** > **Add-ons and Themes**
-3. Search for "**Email Reminders**"
-4. Click **Add to Thunderbird**
-
-Or visit: [Email Reminders on Thunderbird Add-ons](https://addons.thunderbird.net/en-US/thunderbird/addon/email-reminders/)
-
-### Manual Installation
-
-1. Download the latest `.xpi` file from [Releases](../../releases)
-2. Open Thunderbird
-3. Go to **Tools** > **Add-ons and Themes**
-4. Click the gear icon (⚙️) > **Install Add-on From File...**
-5. Select the downloaded `.xpi` file
-6. Click **Add** when prompted
-
-### Development Installation
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/gitzone83/thunderbird-reminder-extension.git
-   ```
-2. Open Thunderbird
-3. Go to **Tools** > **Add-ons and Themes** > gear icon > **Debug Add-ons**
-4. Click **Load Temporary Add-on...**
-5. Select the `manifest.json` file from the cloned folder
-
-## Usage
-
-### Setting a Reminder
-
-1. Right-click on any email in your message list
-2. Select **Set Reminder...** from the context menu
-3. Choose a quick option or select a custom date/time
-4. Optionally add notes
-5. Click **Set Reminder**
-
-### Managing Reminders
-
-- Click the **Email Reminders** icon in the toolbar to see active reminders
-- Use **Snooze**, **Done**, or **Dismiss** to manage each reminder
-- Click **View All Reminders** for the full list with filters
-
-### Settings
-
-Access via **Tools** > **Add-ons and Themes** > **Email Reminders** > **Options**
-
-- Configure check interval
-- Set default reminder time
-- Export/Import reminders
-- Clear reminder data
-
-## Building from Source
-
-```bash
-# Clone the repository
-git clone https://github.com/gitzone83/thunderbird-reminder-extension.git
-cd thunderbird-reminder-extension
-
-# Validate translations (Node.js 18+)
-node scripts/check-locales.mjs
-node --test tests/i18n.test.cjs
-
-# Create XPI package (Python 3; no runtime dependencies)
-python3 scripts/build-xpi.py
-```
-
-The package is written to `dist/`. It includes only extension runtime files and
-the license, excluding tests, screenshots, build tools and Git metadata.
-For a separately versioned local build, use `--version 0.3.1.1`.
-Install the XPI through Thunderbird → Add-ons and Themes → gear icon →
-Install Add-on From File.
+If no notification appears, check the reminder's **Status** in the full list,
+Thunderbird's system notification permissions, and Do Not Disturb. An already
+notified reminder needs to be snoozed before another delivery. Completed and
+dismissed reminders can be reactivated.
 
 ## Languages
 
-English and Russian are included. The extension follows the Thunderbird UI
-language, with English as the fallback for unsupported languages. Restart
-Thunderbird after changing its UI language. Dates and relative times use the
-UI locale; reminder timestamps and exported data keep their original format.
+The interface follows the Thunderbird UI language. Restart Thunderbird after
+changing that language. Unsupported languages fall back to English messages;
+date/time formatting still uses the UI locale. Email subjects, senders, notes,
+internal status values and stored timestamps are not translated.
 
-See [LOCALIZATION.md](LOCALIZATION.md) to add a language or run the UI checks.
+To add a language, copy `_locales/en/messages.json` to `_locales/<locale>/messages.json`,
+translate the messages while retaining keys and placeholders, then run the
+catalog validator. See [LOCALIZATION.md](LOCALIZATION.md) for the complete workflow.
 
-## Project Structure
+## Build and install this fork
 
-```
-thunderbird-reminder-extension/
-├── manifest.json           # Extension manifest
-├── background.js           # Background script (alarms, notifications)
-├── popup/                  # Toolbar popup UI
-├── reminder-dialog/        # Set reminder dialog
-├── reminder-list/          # Full reminders list view
-├── options/                # Settings page
-├── icons/                  # Extension icons
-├── _locales/               # Internationalization
-├── README.md
-├── PRIVACY.md
-└── LICENSE
+Requirements: Git and Python 3 to build; Node.js 18+ for the checks.
+
+```sh
+git clone https://github.com/x09/thunderbird-reminder-extension.git
+cd thunderbird-reminder-extension
+
+node scripts/check-locales.mjs
+node --test tests/i18n.test.cjs
+python3 scripts/build-xpi.py --version 0.3.1.1
 ```
 
-## Privacy
+Install `dist/email-reminders-0.3.1.1.xpi` in Thunderbird:
+**Add-ons and Themes → gear icon → Install Add-on From File**.
+The builder includes runtime files and the license; it excludes screenshots,
+tests, documentation and Git metadata. Omitting `--version` uses the manifest version.
 
-This extension stores all data locally on your device. No data is collected, transmitted, or shared with anyone. See [PRIVACY.md](PRIVACY.md) for details.
+The add-on ID remains `email-reminders@mhajduczenia.dev`: this replaces the same
+add-on rather than installing a second independent copy. Reminder data is not
+cleared by the localization changes. Export a backup before replacing an existing installation.
 
-## Contributing
+For development, use **Debug Add-ons → Load Temporary Add-on** and select
+`manifest.json`. The upstream add-on store listing is a separate distribution;
+it does not establish which changes from this fork it includes.
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+## Validation and current limitations
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+- Catalog/reference checks and 8 Node tests passed.
+- 12 browser smoke scenarios covered four pages in English, Russian and an
+  unsupported locale, using mocked Thunderbird APIs.
+- Local XPIs installed and activated in isolated Thunderbird 159 profiles;
+  Russian, English and English fallback selection were verified.
+- A comparative notification test of the original and localized builds produced
+  desktop notifications in ALT Workstation 11.2 / Thunderbird 159 / KDE.
 
-## Roadmap
+The manifest declares Thunderbird **106+**, but compatibility testing here used
+**159**. Earlier versions and a complete real-mailbox workflow remain to be checked.
 
-- [x] Visual indicators on emails with active reminders
-- [ ] Recurring reminders
-- [ ] Calendar integration
-- [ ] Keyboard shortcuts
-- [ ] More localization options
+Two inherited settings limitations remain: the background check interval is
+hardcoded to one minute despite the interval selector, and day-based quick
+choices/reactivation use 09:00 despite the default-time setting. Localization
+has not changed this scheduling logic. Recurring reminders are not implemented.
 
-## License
+## Screenshots: original upstream interface
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+The images below are retained from the original project. They illustrate the
+workflow, **not the current Russian interface**. Layout and text may differ from
+this fork, and the desktop notification's appearance is platform-specific.
+No current Russian screenshots are published here yet.
 
-## Acknowledgments
+<details>
+<summary>View original English screenshots</summary>
 
-- Inspired by Microsoft Outlook's email reminder functionality
-- Built with [Thunderbird MailExtensions API](https://webextension-api.thunderbird.net/)
+### Create a reminder
+
+![Original: context menu](screenshots/context-menu.png)
+![Original: reminder dialog](screenshots/reminder-dialog.png)
+
+### Tags and toolbar
+
+![Original: email tag](screenshots/email-with-tag.png)
+![Original: toolbar badge](screenshots/toolbar-badge.png)
+![Original: toolbar popup](screenshots/toolbar-popup.png)
+
+### Full list, notification and settings
+
+![Original: reminder list](screenshots/reminder-list.png)
+![Original: desktop notification — platform-specific appearance](screenshots/notification.png)
+![Original: settings](screenshots/settings.png)
+
+</details>
+
+See the [screenshot plan](screenshots/README.md) for replacing these examples with
+current Russian and English captures using demonstration mail.
+
+## Contributing and license
+
+Translation improvements, bug reports and reproducible test cases are welcome.
+Send fork-specific changes to this repository; discuss upstream contributions in
+the [original project](https://github.com/gitzone83/thunderbird-reminder-extension).
+
+MIT license; see [LICENSE](LICENSE). Original extension by Marek Hajduczenia.
+Built with the [Thunderbird MailExtensions API](https://webextension-api.thunderbird.net/).
