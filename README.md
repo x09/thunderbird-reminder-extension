@@ -9,10 +9,10 @@ with Russian localization and an infrastructure for additional languages.
 
 ## Download and install
 
-Current version: **0.4.0.1**, based on upstream **0.4.0**.
+Current version: **0.4.0.2**, based on upstream **0.4.0**.
 
-- **[Download XPI 0.4.0.1](https://github.com/x09/thunderbird-reminder-extension/releases/download/v0.4.0.1/email-reminders-0.4.0.1-en-ru.xpi)**
-- [Release notes and SHA-256 checksum](https://github.com/x09/thunderbird-reminder-extension/releases/tag/v0.4.0.1)
+- **[Download XPI 0.4.0.2](https://github.com/x09/thunderbird-reminder-extension/releases/download/v0.4.0.2/email-reminders-0.4.0.2-en-ru.xpi)**
+- [Release notes and SHA-256 checksum](https://github.com/x09/thunderbird-reminder-extension/releases/tag/v0.4.0.2)
 
 In Thunderbird, open **Add-ons and Themes → gear icon → Install Add-on From File**
 and choose the downloaded XPI. Installing the ready-made package does not require
@@ -42,7 +42,7 @@ The implementation is in this fork's `master`. The localization contribution is
 also proposed upstream in [PR #6](https://github.com/gitzone83/thunderbird-reminder-extension/pull/6).
 That PR has its own status; this fork can be built and used independently.
 
-The fork version is **0.4.0.1**, based on the official upstream **0.4.0** XPI.
+The fork version is **0.4.0.2**, based on the official upstream **0.4.0** XPI.
 See [upstream comparison](UPSTREAM.md). This is not an official upstream release.
 Install over fork 0.3.2 to preserve reminders and settings.
 
@@ -122,10 +122,10 @@ cd thunderbird-reminder-extension
 
 node scripts/check-locales.mjs
 node --test tests/i18n.test.cjs
-python3 scripts/build-xpi.py --version 0.4.0.1
+python3 scripts/build-xpi.py --version 0.4.0.2
 ```
 
-Install `dist/email-reminders-0.4.0.1.xpi` in Thunderbird:
+Install `dist/email-reminders-0.4.0.2.xpi` in Thunderbird:
 **Add-ons and Themes → gear icon → Install Add-on From File**.
 The builder includes runtime files and the license; it excludes screenshots,
 tests, documentation and Git metadata. Omitting `--version` uses the manifest version.

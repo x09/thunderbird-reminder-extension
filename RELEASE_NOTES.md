@@ -1,10 +1,13 @@
-# Release Notes: x09 fork 0.4.0.1
+# Release Notes: x09 fork 0.4.0.2
+
+The display name no longer includes the maintainer suffix in either language.
+The fork ID, author and homepage remain unchanged.
 
 Based on the official 0.4.0 XPI, with our English/Russian localization and fork
 identity preserved. See [UPSTREAM.md](UPSTREAM.md) for the comparison and
 [README.md](README.md) / [README.ru.md](README.ru.md) for installation and migration.
 
-Install over fork 0.3.2 to retain reminders and settings. Users of the original
+Install over fork 0.3.2 or 0.4.0.1 to retain reminders and settings. Users of the original
 add-on or fork 0.3.1.1 must export JSON, disable the old add-on, install this fork
 and import their reminders. Future fork updates are installed manually.
 

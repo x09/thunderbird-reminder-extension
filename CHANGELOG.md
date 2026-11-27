@@ -2,6 +2,14 @@
 
 All notable changes to Email Reminders for Thunderbird will be documented in this file.
 
+## [0.4.0.2] - 2026-11-27 (x09 fork)
+
+### Changed
+- Display the extension name as “Email Reminders” in English and
+  “Напоминания о письмах” in Russian, without the maintainer suffix.
+- Keep the fork ID, author and homepage unchanged. Install over fork 0.3.2 or
+  0.4.0.1 to retain reminders and settings.
+
 ## [0.4.0.1] - 2026-11-27 (x09 fork)
 
 ### Changed

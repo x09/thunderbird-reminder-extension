@@ -9,10 +9,10 @@
 
 ## Скачать и установить
 
-Текущая версия: **0.4.0.1**, на основе оригинального дополнения **0.4.0**.
+Текущая версия: **0.4.0.2**, на основе оригинального дополнения **0.4.0**.
 
-- **[Скачать XPI 0.4.0.1](https://github.com/x09/thunderbird-reminder-extension/releases/download/v0.4.0.1/email-reminders-0.4.0.1-en-ru.xpi)**
-- [Описание релиза и контрольная сумма SHA-256](https://github.com/x09/thunderbird-reminder-extension/releases/tag/v0.4.0.1)
+- **[Скачать XPI 0.4.0.2](https://github.com/x09/thunderbird-reminder-extension/releases/download/v0.4.0.2/email-reminders-0.4.0.2-en-ru.xpi)**
+- [Описание релиза и контрольная сумма SHA-256](https://github.com/x09/thunderbird-reminder-extension/releases/tag/v0.4.0.2)
 
 В Thunderbird откройте **Дополнения и темы → шестерёнка → Установить дополнение
 из файла** и выберите скачанный XPI. Для установки готового пакета Git, Python
@@ -42,7 +42,7 @@
 автору оригинала в [PR #6](https://github.com/gitzone83/thunderbird-reminder-extension/pull/6).
 Статус этого PR отслеживается отдельно; форк можно собирать и использовать независимо.
 
-Версия форка — **0.4.0.1**, на основе официального XPI **0.4.0**.
+Версия форка — **0.4.0.2**, на основе официального XPI **0.4.0**.
 Подробнее: [сравнение с оригиналом](UPSTREAM.md). Это не официальный релиз автора оригинала.
 Поверх форка 0.3.2 новый XPI устанавливается с сохранением напоминаний и настроек.
 
@@ -125,10 +125,10 @@ cd thunderbird-reminder-extension
 
 node scripts/check-locales.mjs
 node --test tests/i18n.test.cjs
-python3 scripts/build-xpi.py --version 0.4.0.1
+python3 scripts/build-xpi.py --version 0.4.0.2
 ```
 
-Установите `dist/email-reminders-0.4.0.1.xpi` через меню Thunderbird:
+Установите `dist/email-reminders-0.4.0.2.xpi` через меню Thunderbird:
 **Дополнения и темы → шестерёнка → Установить дополнение из файла**.
 В XPI входят рабочие файлы расширения и лицензия. Скриншоты, тесты, документация
 и служебные файлы Git исключаются. Без `--version` используется версия из манифеста.
