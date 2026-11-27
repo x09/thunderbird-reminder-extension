@@ -23,7 +23,9 @@ The implementation is in this fork's `master`. The localization contribution is
 also proposed upstream in [PR #6](https://github.com/gitzone83/thunderbird-reminder-extension/pull/6).
 That PR has its own status; this fork can be built and used independently.
 
-The fork version is **0.3.2**. This is not an official upstream release.
+The fork version is **0.4.0.1**, based on the official upstream **0.4.0** XPI.
+See [upstream comparison](UPSTREAM.md). This is not an official upstream release.
+Install over fork 0.3.2 to preserve reminders and settings.
 
 ### Migrating from 0.3.1.1 or the original extension
 
@@ -101,10 +103,10 @@ cd thunderbird-reminder-extension
 
 node scripts/check-locales.mjs
 node --test tests/i18n.test.cjs
-python3 scripts/build-xpi.py --version 0.3.2
+python3 scripts/build-xpi.py --version 0.4.0.1
 ```
 
-Install `dist/email-reminders-0.3.2.xpi` in Thunderbird:
+Install `dist/email-reminders-0.4.0.1.xpi` in Thunderbird:
 **Add-ons and Themes → gear icon → Install Add-on From File**.
 The builder includes runtime files and the license; it excludes screenshots,
 tests, documentation and Git metadata. Omitting `--version` uses the manifest version.

@@ -2,6 +2,28 @@
 
 All notable changes to Email Reminders for Thunderbird will be documented in this file.
 
+## [0.4.0.1] - 2026-11-27 (x09 fork)
+
+### Changed
+- Base the fork on the official Thunderbird Add-ons 0.4.0 package. Its runtime
+  files match upstream Git commit `64a6072c58b193a2e5adfd316c5b4dd8a3727e73`;
+  the package updates the manifest version and upstream release documentation.
+- Preserve English/Russian localization, translator tools, localized tag handling,
+  layout fixes, bilingual descriptions and documentation from our earlier builds.
+- Preserve the separate `email-reminders@x09.github.io` ID, x09 author and fork
+  homepage introduced in 0.3.2 to prevent replacement by upstream store updates.
+- Existing users of fork 0.3.2 can install this XPI as an in-place update.
+
+See [UPSTREAM.md](UPSTREAM.md) for package provenance and comparison details.
+
+## [0.4.0] - 2026-04-28
+
+### Added
+- New **"Archive email after setting a reminder"** option in Settings (off by default). When enabled, an email is moved to Thunderbird's per-account Archives folder right after a reminder is created, keeping the inbox clean while the reminder remains trackable via the popup, list, and notifications.
+
+### Changed
+- Added `messagesMove` permission to enable optional archiving via `browser.messages.archive()`.
+
 ## [0.3.1] - 2026-01-21
 
 ### Changed
