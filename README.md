@@ -7,6 +7,25 @@ This is the [x09 fork](https://github.com/x09/thunderbird-reminder-extension) of
 [Marek Hajduczenia's original project](https://github.com/gitzone83/thunderbird-reminder-extension),
 with Russian localization and an infrastructure for additional languages.
 
+## Download and install
+
+Current version: **0.4.0.1**, based on upstream **0.4.0**.
+
+- **[Download XPI 0.4.0.1](https://github.com/x09/thunderbird-reminder-extension/releases/download/v0.4.0.1/email-reminders-0.4.0.1-en-ru.xpi)**
+- [Release notes and SHA-256 checksum](https://github.com/x09/thunderbird-reminder-extension/releases/tag/v0.4.0.1)
+
+In Thunderbird, open **Add-ons and Themes → gear icon → Install Add-on From File**
+and choose the downloaded XPI. Installing the ready-made package does not require
+Git, Python or Node.js.
+
+**Updating our fork 0.3.2:** install this XPI over it. Reminders and settings are
+preserved; no JSON migration is needed.
+
+**Migrating from upstream (including 0.4.0) or our old build 0.3.1.1:** export
+reminders as JSON, disable the old add-on, install this XPI and import the JSON
+in its settings. Configure settings again. Do not enable both add-ons together.
+Keep your export until you have verified the migration.
+
 ## What this fork adds
 
 - Complete **English and Russian** catalogs: 102 messages per language, covering
@@ -30,7 +49,7 @@ Install over fork 0.3.2 to preserve reminders and settings.
 ### Migrating from 0.3.1.1 or the original extension
 
 Earlier fork builds shared the original add-on ID and could be replaced by an
-English-only update from addons.thunderbird.net. Version 0.3.2 uses its own ID,
+English-only update from addons.thunderbird.net. Since version 0.3.2, the fork uses its own ID,
 `email-reminders@x09.github.io`, author `x09`, and the fork homepage.
 Export reminders to JSON from the old extension settings, disable the old
 extension, install this XPI, then import the JSON in the new extension settings.
@@ -111,9 +130,10 @@ Install `dist/email-reminders-0.4.0.1.xpi` in Thunderbird:
 The builder includes runtime files and the license; it excludes screenshots,
 tests, documentation and Git metadata. Omitting `--version` uses the manifest version.
 
-The add-on ID remains `email-reminders@mhajduczenia.dev`: this replaces the same
-add-on rather than installing a second independent copy. Reminder data is not
-cleared by the localization changes. Export a backup before replacing an existing installation.
+The fork ID is `email-reminders@x09.github.io`. It differs from upstream and has
+remained unchanged since fork 0.3.2. Updating the fork preserves its data; moving
+from upstream requires JSON migration. The fork does not receive upstream store
+updates. Install future fork versions manually from Releases.
 
 For development, use **Debug Add-ons → Load Temporary Add-on** and select
 `manifest.json`. The upstream add-on store listing is a separate distribution;
