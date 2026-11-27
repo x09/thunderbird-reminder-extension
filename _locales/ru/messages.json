@@ -1,10 +1,10 @@
 {
   "extensionName": {
-    "message": "Напоминания о письмах",
+    "message": "Напоминания о письмах — x09",
     "description": "UI text: extensionName"
   },
   "extensionDescription": {
-    "message": "Напоминания о письмах с уведомлениями в стиле Outlook",
+    "message": "Напоминания о письмах: системные уведомления, отсрочка и метки. Русский и английский языки. Форк x09.",
     "description": "UI text: extensionDescription"
   },
   "setReminder": {
@@ -442,5 +442,21 @@
         "example": "0.3.1"
       }
     }
+  },
+  "aboutHeading": {
+    "message": "О расширении",
+    "description": "UI text: aboutHeading"
+  },
+  "aboutDescription": {
+    "message": "Назначайте напоминания для писем с помощью быстрых вариантов или выбирайте дату и время. При наступлении срока появляются системные уведомления, если Thunderbird запущен. Письма отмечаются меткой напоминания. Список с фильтрами позволяет откладывать, выполнять и отклонять напоминания; экспорт и импорт JSON — переносить их. Поддерживаются русский и английский языки. Язык выбирается по интерфейсу Thunderbird; для остальных языков используется английский. Данные напоминаний хранятся локально.",
+    "description": "UI text: aboutDescription"
+  },
+  "aboutCredits": {
+    "message": "Форк поддерживает x09. Основан на Email Reminders, автор оригинала — Marek Hajduczenia.",
+    "description": "UI text: aboutCredits"
+  },
+  "projectWebsite": {
+    "message": "Сайт проекта",
+    "description": "UI text: projectWebsite"
   }
 }

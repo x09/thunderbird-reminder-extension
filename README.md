@@ -9,7 +9,7 @@ with Russian localization and an infrastructure for additional languages.
 
 ## What this fork adds
 
-- Complete **English and Russian** catalogs: 98 messages per language, covering
+- Complete **English and Russian** catalogs: 102 messages per language, covering
   all four pages, menu items, notifications, errors, confirmations and tag labels.
 - Automatic language selection from the Thunderbird UI, with English as the fallback.
 - Locale-aware dates and relative times, including Russian grammatical forms.
@@ -23,8 +23,22 @@ The implementation is in this fork's `master`. The localization contribution is
 also proposed upstream in [PR #6](https://github.com/gitzone83/thunderbird-reminder-extension/pull/6).
 That PR has its own status; this fork can be built and used independently.
 
-The source manifest version is **0.3.1**. The separately built localization XPI
-uses **0.3.1.1** via a build-time override; it is not an official upstream release.
+The fork version is **0.3.2**. This is not an official upstream release.
+
+### Migrating from 0.3.1.1 or the original extension
+
+Earlier fork builds shared the original add-on ID and could be replaced by an
+English-only update from addons.thunderbird.net. Version 0.3.2 uses its own ID,
+`email-reminders@x09.github.io`, author `x09`, and the fork homepage.
+Export reminders to JSON from the old extension settings, disable the old
+extension, install this XPI, then import the JSON in the new extension settings.
+Keep the export until you have checked your reminders. Settings must be configured
+again. Do not enable both extensions: they share message tags and can show duplicate
+notifications. Future fork releases are installed manually from GitHub Releases.
+
+The short add-on description is localized. The full description is available in
+the settings page under About and in this README. The original store listing
+and its reviews belong to the upstream author and are not changed by this fork.
 
 ## Features
 
@@ -87,10 +101,10 @@ cd thunderbird-reminder-extension
 
 node scripts/check-locales.mjs
 node --test tests/i18n.test.cjs
-python3 scripts/build-xpi.py --version 0.3.1.1
+python3 scripts/build-xpi.py --version 0.3.2
 ```
 
-Install `dist/email-reminders-0.3.1.1.xpi` in Thunderbird:
+Install `dist/email-reminders-0.3.2.xpi` in Thunderbird:
 **Add-ons and Themes → gear icon → Install Add-on From File**.
 The builder includes runtime files and the license; it excludes screenshots,
 tests, documentation and Git metadata. Omitting `--version` uses the manifest version.

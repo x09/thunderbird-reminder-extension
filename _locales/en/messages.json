@@ -1,10 +1,10 @@
 {
   "extensionName": {
-    "message": "Email Reminders",
+    "message": "Email Reminders — x09",
     "description": "UI text: extensionName"
   },
   "extensionDescription": {
-    "message": "Set reminders for emails with Outlook-style notifications",
+    "message": "Email reminders with desktop notifications, snooze and message tags. English and Russian. Fork maintained by x09.",
     "description": "UI text: extensionDescription"
   },
   "setReminder": {
@@ -442,5 +442,21 @@
         "example": "0.3.1"
       }
     }
+  },
+  "aboutHeading": {
+    "message": "About Email Reminders",
+    "description": "UI text: aboutHeading"
+  },
+  "aboutDescription": {
+    "message": "Set reminders for emails using quick presets or a chosen date and time. Due reminders trigger desktop notifications while Thunderbird is running. Mark messages with reminder tags, manage reminders in a filtered list, snooze, complete or dismiss them, and export or import them as JSON. English and Russian are included; the interface follows the Thunderbird language, with English as the fallback. Reminder data is stored locally.",
+    "description": "UI text: aboutDescription"
+  },
+  "aboutCredits": {
+    "message": "Fork maintained by x09, based on Email Reminders by Marek Hajduczenia.",
+    "description": "UI text: aboutCredits"
+  },
+  "projectWebsite": {
+    "message": "Project website",
+    "description": "UI text: projectWebsite"
   }
 }

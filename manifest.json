@@ -1,18 +1,16 @@
 {
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "default_locale": "en",
   "description": "__MSG_extensionDescription__",
-  "author": "Marek Hajduczenia",
-
+  "author": "x09",
   "browser_specific_settings": {
     "gecko": {
-      "id": "email-reminders@mhajduczenia.dev",
+      "id": "email-reminders@x09.github.io",
       "strict_min_version": "106.0"
     }
   },
-
   "permissions": [
     "storage",
     "alarms",
@@ -24,11 +22,12 @@
     "messagesTags",
     "accountsRead"
   ],
-
   "background": {
-    "scripts": ["i18n.js", "background.js"]
+    "scripts": [
+      "i18n.js",
+      "background.js"
+    ]
   },
-
   "browser_action": {
     "default_title": "__MSG_extensionName__",
     "default_icon": {
@@ -37,16 +36,15 @@
     },
     "default_popup": "popup/popup.html"
   },
-
   "options_ui": {
     "page": "options/options.html",
     "open_in_tab": true
   },
-
   "icons": {
     "16": "icons/icon-16.png",
     "32": "icons/icon-32.png",
     "48": "icons/icon-48.png",
     "128": "icons/icon-128.png"
-  }
+  },
+  "homepage_url": "https://github.com/x09/thunderbird-reminder-extension"
 }
